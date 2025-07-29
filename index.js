@@ -59,7 +59,10 @@ app.get('/screenshot', async (req, res) => {
     }
 
     // Launch Puppeteer in headless mode
-    const browser = await puppeteer.launch();
+    // const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
     const page = await browser.newPage();
 
     // Set viewport if width/height provided, else use default desktop
